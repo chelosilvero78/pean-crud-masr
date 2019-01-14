@@ -18,16 +18,24 @@ export class UsersService {
     return this.http.get(`${this.uri}/users/${id}`);
   }
 
-  createUser() {
-
+  createUser(name, email) {
+    const user = {
+      name: name,
+      email: email
+    };
+    return this.http.post(`${this.uri}/users`, user);
   }
 
-  updateUser() {
-
+  updateUser(id, name, email) {
+    const user = {
+      name: name,
+      email: email
+    };
+    return this.http.put(`${this.uri}/users/${id}`, user);
   }
 
-  deleteUser() {
-
+  deleteUser(id) {
+    return this.http.delete(`${this.uri}/users/${id}`);
   }
 
 }
