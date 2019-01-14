@@ -1,9 +1,12 @@
-<div>
-  <br>
+<div class="menubar">
   <mat-card>
-    <button mat-button color="primary" routerLink="/create">Create New Issue</button>
-    <br><br>
-    <mat-divider></mat-divider>
-    <br>
+    <button mat-raised-button color="primary" routerLink="/create">Create New Issue</button>
+  </mat-card>
+</div>
+
+<div class="cards" *ngFor="let user of users">
+  <mat-card>
+    <mat-card-title>{{user.name}}</mat-card-title>
+    <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
   </mat-card>
 </div>

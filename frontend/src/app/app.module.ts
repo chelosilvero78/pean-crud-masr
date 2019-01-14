@@ -9,7 +9,7 @@ import { CreateComponent } from './components/create/create.component';
 import { EditComponent } from './components/edit/edit.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { MatToolbarModule, MatCardModule, MatDivider, MatDividerModule } from '@angular/material';
+import { MatToolbarModule, MatCardModule, MatDividerModule, MatButtonModule } from '@angular/material';
 
 const routes: Routes = [
   { path: 'create', component: CreateComponent },
@@ -33,7 +33,8 @@ const routes: Routes = [
     MatToolbarModule,
     MatCardModule,
     HttpClientModule,
-    MatDividerModule
+    MatDividerModule,
+    MatButtonModule
   ],
   providers: [UsersService],
   bootstrap: [AppComponent]
