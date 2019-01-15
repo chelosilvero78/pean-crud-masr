@@ -1,3 +1,20 @@
-<p>
-  create works!
-</p>
+<div>
+  <mat-card>
+    <mat-card-title>Create a New User</mat-card-title>
+    <form [formGroup]="form" class="createForm">
+      <mat-card-content>
+        <mat-form-field>
+          <input matInput placeholder="Name" formControlName="name" #name>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Email" formControlName="email" #email>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="accent" routerLink="/list">Back</button>
+        <button type="submit" (click)="addUser(name.value, email.value)" [disabled]="form.pristine || form.invalid"
+          mat-raised-button color="primary">Save</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>

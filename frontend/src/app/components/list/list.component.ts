@@ -1,7 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../user.module';
 import { UsersService } from '../../users.service';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+
+export interface DialogData {
+  name: string;
+  email: string;
+}
 
 @Component({
   selector: 'app-list',
@@ -10,14 +16,13 @@ import { UsersService } from '../../users.service';
 })
 export class ListComponent implements OnInit {
   users: User[];
-  displayedColumns = ['name', 'email'];
-  constructor(private usersService: UsersService, private router: Router) { }
+  constructor(private usersService: UsersService, private router: Router, public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.fetchIssues();
+    this.fetchUsers();
   }
 
-  fetchIssues() {
+  fetchUsers() {
     this.usersService
     .getUsers()
     .subscribe((data: User[]) => {
@@ -26,13 +31,37 @@ export class ListComponent implements OnInit {
       console.log(this.users);
     });
   }
-  editIssue(id) {
+  editUser(id) {
     this.router.navigate([`/edit/${id}`]);
   }
-  deleteIssue(id) {
+  deleteUser(id) {
     this.usersService.deleteUser(id).subscribe(() => {
-      this.fetchIssues();
+      this.fetchUsers();
     });
   }
 
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '300'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
+  }
+}
+
+@Component({
+  selector: 'app-dialog',
+  templateUrl: './dialog.html',
+})
+export class DialogComponent {
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 }
