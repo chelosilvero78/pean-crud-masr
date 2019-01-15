@@ -14,7 +14,7 @@ export class UsersService {
     return this.http.get(`${this.uri}/users`);
   }
 
-  getIssueById(id) {
+  getUserById(id) {
     return this.http.get(`${this.uri}/users/${id}`);
   }
 

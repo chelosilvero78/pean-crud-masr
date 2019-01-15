@@ -1,4 +1,9 @@
 .cards mat-card {
-    height: 50%;
-    width: 50%;
+    width: 25%;
+    float: left;
+    margin: 2%;
+}
+
+.cards mat-card-actions {
+    text-align: right;
 }
