@@ -15,7 +15,7 @@ export class CreateComponent implements OnInit {
   constructor(private usersService: UsersService, private formBuilder: FormBuilder, private router: Router) {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
-      email: ''
+      email: ['', Validators.required ]
     });
   }
 
