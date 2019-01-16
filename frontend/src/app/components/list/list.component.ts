@@ -2,9 +2,9 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../user.module';
 import { UsersService } from '../../users.service';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material';
 import { CreateComponent } from '../create/create.component';
-
+import { EditComponent } from '../edit/edit.component';
 
 @Component({
   selector: 'app-list',
@@ -13,6 +13,7 @@ import { CreateComponent } from '../create/create.component';
 })
 export class ListComponent implements OnInit {
   createUserDialogRef: MatDialogRef<CreateComponent>;
+  editUserDialogRef: MatDialogRef<EditComponent>;
 
   users: User[];
 
@@ -42,5 +43,21 @@ export class ListComponent implements OnInit {
 
   openAddUserDialog() {
     this.createUserDialogRef = this.dialog.open(CreateComponent);
+    this.createUserDialogRef
+        .afterClosed()
+        .subscribe(name => this.fetchUsers());
+  }
+  openEditUserDialog(user) {
+    const dialogConfig = new MatDialogConfig();
+    console.log(user);
+    dialogConfig.data = {
+      id: user.id,
+      name: user.name,
+      email: user.email
+    };
+    this.editUserDialogRef = this.dialog.open(EditComponent, dialogConfig);
+    this.editUserDialogRef
+        .afterClosed()
+        .subscribe(name => this.fetchUsers());
   }
 }

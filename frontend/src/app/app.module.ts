@@ -10,7 +10,8 @@ import { EditComponent } from './components/edit/edit.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { MatToolbarModule, MatCardModule, MatDividerModule, MatButtonModule,
-  MatGridListModule, MatIconModule, MatFormFieldModule, MatInputModule, MatDialogModule } from '@angular/material';
+  MatGridListModule, MatIconModule, MatFormFieldModule, MatInputModule, MatDialogModule,
+  MatSnackBarModule } from '@angular/material';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 const routes: Routes = [
@@ -43,10 +44,11 @@ const routes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    MatSnackBarModule
   ],
   providers: [UsersService],
   bootstrap: [AppComponent],
-  entryComponents: [CreateComponent]
+  entryComponents: [CreateComponent, EditComponent]
 })
 export class AppModule { }
