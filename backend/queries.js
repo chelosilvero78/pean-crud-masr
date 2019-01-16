@@ -10,7 +10,7 @@ const pool = new Pool({
 const getUsers = (request, response) => {
     pool.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
       if (error) {
-        return response.status(400).send("Please check the API request for errors")
+        return response.status(400).json("Please check the API request for errors")
       }
       return response.status(200).json(results.rows)
     })
@@ -21,7 +21,7 @@ const getUserById = (request, response) => {
   
     pool.query('SELECT * FROM users WHERE id = $1', [id], (error, results) => {
       if ((error)||(results.rowCount==0)) {
-        return response.status(400).send("Please check the API request for errors")
+        return response.status(400).json("Please check the API request for errors")
       }
       return response.status(200).json(results.rows)
     })
@@ -32,9 +32,9 @@ const createUser = (request, response) => {
   
     pool.query('INSERT INTO users (name, email) VALUES ($1, $2)', [name, email], (error, results) => {
       if (error) {
-        return response.status(400).send("Please check the API request for errors")
+        return response.status(400).json("Please check the API request for errors")
       }
-      return response.status(201).send(`User added successfully`)
+      return response.status(201).json(`User added successfully`)
     })
 }
 
@@ -47,9 +47,9 @@ const updateUser = (request, response) => {
       [name, email, id],
       (error, results) => {
         if (error) {
-            return response.status(400).send("Please check the API request for errors")
+            return response.status(400).json("Please check the API request for errors")
         }
-        return response.status(200).send(`User modified with ID: ${id}`)
+        return response.status(200).json(`User modified with ID: ${id}`)
       }
     )
 }
@@ -59,9 +59,9 @@ const deleteUser = (request, response) => {
   
     pool.query('DELETE FROM users WHERE id = $1', [id], (error, results) => {
       if ((error)||(results.rowCount==0)) {
-        return response.status(400).send("Please check the API request for errors")
+        return response.status(400).json("Please check the API request for errors")
       }
-      return response.status(200).send(`User deleted with ID: ${id}`)
+      return response.status(200).json(`User deleted with ID: ${id}`)
     })
 }
 

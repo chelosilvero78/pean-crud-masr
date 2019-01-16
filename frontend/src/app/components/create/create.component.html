@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
   <mat-card>
     <mat-card-title>Create a New User</mat-card-title>
     <form [formGroup]="form" class="createForm">
@@ -17,4 +17,38 @@
       </mat-card-actions>
     </form>
   </mat-card>
-</div>
+</div> -->
+<!-- <form [formGroup]="form" (ngSubmit)="submit(form)">
+  <h1 mat-dialog-title>Create a User</h1>
+  <div mat-dialog-content>
+    <p>What's the name of the user?</p>
+    <mat-form-field>
+      <input matInput formControlName="name" [(ngModel)]="data.name">
+    </mat-form-field>
+    <p>What's their email address?</p>
+    <mat-form-field>
+      <input matInput formControlName="email" [(ngModel)]="data.email">
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button >Back</button>
+    <button mat-button >Create</button>
+  </div>
+</form> -->
+
+<form [formGroup]="form" class="createForm">
+  <h1 mat-dialog-title>Create a User</h1>
+  <div mat-dialog-content>
+    <mat-form-field>
+      <input matInput placeholder="Name" formControlName="name" #name>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Email" formControlName="email" #email>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="accent" [mat-dialog-close]>Back</button>
+    <button type="submit" (click)="addUser(name.value, email.value)" [mat-dialog-close] [disabled]="form.pristine || form.invalid"
+      mat-raised-button color="primary">Save</button>
+  </div>
+</form>

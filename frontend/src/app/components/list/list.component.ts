@@ -2,12 +2,9 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../user.module';
 import { UsersService } from '../../users.service';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { CreateComponent } from '../create/create.component';
 
-export interface DialogData {
-  name: string;
-  email: string;
-}
 
 @Component({
   selector: 'app-list',
@@ -15,8 +12,11 @@ export interface DialogData {
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
+  createUserDialogRef: MatDialogRef<CreateComponent>;
+
   users: User[];
-  constructor(private usersService: UsersService, private router: Router, public dialog: MatDialog) { }
+
+  constructor(private usersService: UsersService, private router: Router, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.fetchUsers();
@@ -40,28 +40,7 @@ export class ListComponent implements OnInit {
     });
   }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(DialogComponent, {
-      width: '300'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-    });
-  }
-}
-
-@Component({
-  selector: 'app-dialog',
-  templateUrl: './dialog.html',
-})
-export class DialogComponent {
-
-  constructor(
-    public dialogRef: MatDialogRef<DialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
+  openAddUserDialog() {
+    this.createUserDialogRef = this.dialog.open(CreateComponent);
   }
 }

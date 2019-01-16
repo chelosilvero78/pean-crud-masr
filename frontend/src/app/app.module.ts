@@ -4,7 +4,7 @@ import { UsersService } from './users.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ListComponent, DialogComponent } from './components/list/list.component';
+import { ListComponent } from './components/list/list.component';
 import { CreateComponent } from './components/create/create.component';
 import { EditComponent } from './components/edit/edit.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -25,8 +25,7 @@ const routes: Routes = [
     AppComponent,
     ListComponent,
     CreateComponent,
-    EditComponent,
-    DialogComponent
+    EditComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +47,6 @@ const routes: Routes = [
   ],
   providers: [UsersService],
   bootstrap: [AppComponent],
-  entryComponents: [DialogComponent]
+  entryComponents: [CreateComponent]
 })
 export class AppModule { }
