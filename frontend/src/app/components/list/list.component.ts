@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../user.module';
 import { UsersService } from '../../users.service';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { CreateComponent } from '../create/create.component';
+
 
 @Component({
   selector: 'app-list',
@@ -9,15 +12,17 @@ import { UsersService } from '../../users.service';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
+  createUserDialogRef: MatDialogRef<CreateComponent>;
+
   users: User[];
-  displayedColumns = ['name', 'email'];
-  constructor(private usersService: UsersService, private router: Router) { }
+
+  constructor(private usersService: UsersService, private router: Router, private dialog: MatDialog) { }
 
   ngOnInit() {
-    this.fetchIssues();
+    this.fetchUsers();
   }
 
-  fetchIssues() {
+  fetchUsers() {
     this.usersService
     .getUsers()
     .subscribe((data: User[]) => {
@@ -26,13 +31,16 @@ export class ListComponent implements OnInit {
       console.log(this.users);
     });
   }
-  editIssue(id) {
+  editUser(id) {
     this.router.navigate([`/edit/${id}`]);
   }
-  deleteIssue(id) {
+  deleteUser(id) {
     this.usersService.deleteUser(id).subscribe(() => {
-      this.fetchIssues();
+      this.fetchUsers();
     });
   }
 
+  openAddUserDialog() {
+    this.createUserDialogRef = this.dialog.open(CreateComponent);
+  }
 }

@@ -9,7 +9,9 @@ import { CreateComponent } from './components/create/create.component';
 import { EditComponent } from './components/edit/edit.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { MatToolbarModule, MatCardModule, MatDividerModule, MatButtonModule, MatGridListModule, MatIconModule } from '@angular/material';
+import { MatToolbarModule, MatCardModule, MatDividerModule, MatButtonModule,
+  MatGridListModule, MatIconModule, MatFormFieldModule, MatInputModule, MatDialogModule } from '@angular/material';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: 'create', component: CreateComponent },
@@ -36,9 +38,15 @@ const routes: Routes = [
     MatDividerModule,
     MatButtonModule,
     MatGridListModule,
-    MatIconModule
+    MatIconModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule,
+    FormsModule
   ],
   providers: [UsersService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [CreateComponent]
 })
 export class AppModule { }
