@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '../../user.module';
+import { Usuario } from '../../user.module';
 import { UsersService } from '../../users.service';
 import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material';
 import { CreateComponent } from '../create/create.component';
@@ -15,7 +15,7 @@ export class ListComponent implements OnInit {
   createUserDialogRef: MatDialogRef<CreateComponent>;
   editUserDialogRef: MatDialogRef<EditComponent>;
 
-  users: User[];
+  usuario: Usuario[];
 
   constructor(private usersService: UsersService, private router: Router, private dialog: MatDialog) { }
 
@@ -26,10 +26,9 @@ export class ListComponent implements OnInit {
   fetchUsers() {
     this.usersService
     .getUsers()
-    .subscribe((data: User[]) => {
-      this.users = data;
-      console.log('Data requested ... ');
-      console.log(this.users);
+    .subscribe((data: Usuario[]) => {
+      this.usuario = data;
+      console.log('Data requested-->',this.usuario);
     });
   }
   editUser(id) {
@@ -47,13 +46,14 @@ export class ListComponent implements OnInit {
         .afterClosed()
         .subscribe(name => this.fetchUsers());
   }
-  openEditUserDialog(user) {
+  openEditUserDialog(usuario) {
     const dialogConfig = new MatDialogConfig();
-    console.log(user);
+    console.log(usuario);
     dialogConfig.data = {
-      id: user.id,
-      name: user.name,
-      email: user.email
+      id_usuario: usuario.id_usuario,
+      nombre_usuario: usuario.nombre_usuario,
+      usuario_usuario:usuario.usuario_usuario,
+      clave_usuario:usuario.clave_usuario,
     };
     this.editUserDialogRef = this.dialog.open(EditComponent, dialogConfig);
     this.editUserDialogRef

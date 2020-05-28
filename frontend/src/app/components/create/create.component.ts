@@ -13,14 +13,19 @@ export class CreateComponent implements OnInit {
   form: FormGroup;
 
   constructor(private usersService: UsersService, private formBuilder: FormBuilder, private router: Router) {
+
+    // this.form = this.formBuilder.group({
+    // name: ['', Validators.required],
+    // email: ['', Validators.required ]
     this.form = this.formBuilder.group({
-      name: ['', Validators.required],
-      email: ['', Validators.required ]
+      nombre_usuario: ['nombres', Validators.required],
+      usuario_usuario: ['user', Validators.required],
+      clave_usuario: ['password', Validators.required]
     });
   }
 
-  addUser(name, email) {
-    this.usersService.createUser(name, email).subscribe(() => {
+  addUser(nombre_usuario,usuario_usuario,clave_usuario) {
+    this.usersService.createUser(nombre_usuario,usuario_usuario,clave_usuario).subscribe(() => {
       this.router.navigate(['/list']);
     });
   }

@@ -27,14 +27,31 @@ export class EditComponent implements OnInit {
     //   });
     // });
   }
+
+
+  // createForm() {
+  //   this.updateForm = this.fb.group({
+  //     name: ['', Validators.required ],
+  //     email: ['', Validators.required ]
+  //   });
+  // }
   createForm() {
     this.updateForm = this.fb.group({
-      name: ['', Validators.required ],
-      email: ['', Validators.required ]
+      nombre_usuario: ['', Validators.required],
+      usuario_usuario: ['', Validators.required],
+      clave_usuario: ['', Validators.required]
     });
   }
-  updateUser(id, name, email) {
-    this.usersService.updateUser(id, name, email).subscribe(() => {
+
+  // updateUser(id, name, email) {
+  //   this.usersService.updateUser(id, name, email).subscribe(() => {
+  //     this.snackBar.open('User updated successfully', 'OK', {
+  //       duration: 3000,
+  //     });
+  //   });
+  // }
+  updateUser(id, nombre_usuario,usuario_usuario,clave_usuario) {
+    this.usersService.updateUser(id, nombre_usuario,usuario_usuario,clave_usuario).subscribe(() => {
       this.snackBar.open('User updated successfully', 'OK', {
         duration: 3000,
       });

@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UsersService {
 
-  uri = 'http://localhost:3000';
+  uri = 'http://localhost:3001';
 
   constructor(private http: HttpClient) { }
 
@@ -18,20 +18,22 @@ export class UsersService {
     return this.http.get(`${this.uri}/users/${id}`);
   }
 
-  createUser(name, email) {
-    const user = {
-      name: name,
-      email: email
+  createUser(nombre_usuario,usuario_usuario,clave_usuario) {
+    const usuario = {
+      nombre_usuario: nombre_usuario,
+      usuario_usuario:usuario_usuario,
+      clave_usuario:clave_usuario
     };
-    return this.http.post(`${this.uri}/users`, user);
+    return this.http.post(`${this.uri}/users`, usuario);
   }
 
-  updateUser(id, name, email) {
-    const user = {
-      name: name,
-      email: email
+  updateUser(id, nombre_usuario,usuario_usuario,clave_usuario) {
+    const usuario = {
+      nombre_usuario: nombre_usuario,
+      usuario_usuario:usuario_usuario,
+      clave_usuario:clave_usuario
     };
-    return this.http.put(`${this.uri}/users/${id}`, user);
+    return this.http.put(`${this.uri}/users/${id}`, usuario);
   }
 
   deleteUser(id) {
