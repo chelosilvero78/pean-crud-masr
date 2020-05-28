@@ -18,13 +18,12 @@ export class CreateComponent implements OnInit {
     // name: ['', Validators.required],
     // email: ['', Validators.required ]
     this.form = this.formBuilder.group({
-      nombre_usuario: ['nombres', Validators.required],
-      usuario_usuario: ['user', Validators.required],
-      clave_usuario: ['password', Validators.required]
+
     });
   }
 
   addUser(nombre_usuario,usuario_usuario,clave_usuario) {
+    console.log("form-->",this.form);
     this.usersService.createUser(nombre_usuario,usuario_usuario,clave_usuario).subscribe(() => {
       this.router.navigate(['/list']);
     });

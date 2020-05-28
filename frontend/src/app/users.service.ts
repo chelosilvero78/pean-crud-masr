@@ -20,9 +20,9 @@ export class UsersService {
 
   createUser(nombre_usuario,usuario_usuario,clave_usuario) {
     const usuario = {
-      nombre_usuario: nombre_usuario,
-      usuario_usuario:usuario_usuario,
-      clave_usuario:clave_usuario
+      nombre_usuario,
+      usuario_usuario,
+      clave_usuario
     };
     return this.http.post(`${this.uri}/users`, usuario);
   }

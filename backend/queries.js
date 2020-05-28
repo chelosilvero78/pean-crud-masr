@@ -32,10 +32,12 @@ const getUserById = (request, response) => {
 const createUser = (request, response) => {
     //const { name, email } = request.body
     const { nombre_usuario,usuario_usuario, clave_usuario } = request.body
+    console.log(request.body);
   
     //pool.query('INSERT INTO users (name, email) VALUES ($1, $2)', [name, email], (error, results) => {
-    pool.query('INSERT INTO usuario (nombre_usuario,usuario_usuario,clave_usuario) VALUES ($1, $2,$3)', [nombre_usuario,usuario_usuario,clave_usuario], (error, results) => {
+    pool.query('INSERT INTO usuarios (nombre_usuario,usuario_usuario,clave_usuario) VALUES ($1, $2,$3)', [nombre_usuario,usuario_usuario,clave_usuario], (error, results) => {
       if (error) {
+        console.log('ha ingresado en el scope error-->')
         return response.status(400).json("Please check the API request for errors")
       }
       return response.status(201).json(`User added successfully`)

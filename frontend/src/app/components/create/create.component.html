@@ -37,19 +37,41 @@
 </form> -->
 
 <form [formGroup]="form" class="createForm">
-  <h1 mat-dialog-title>Create a User</h1>
-  <div mat-dialog-content>
-    <mat-form-field>
-      <input matInput placeholder="Name" formControlName="name" #name>
-    </mat-form-field>
-    <br>
-    <mat-form-field>
-      <input matInput placeholder="Email" formControlName="email" #email>
-    </mat-form-field>
-  </div>
-  <div mat-dialog-actions>
-    <button mat-raised-button color="accent" [mat-dialog-close]>Back</button>
-    <button type="submit" (click)="addUser(name.value, email.value)" [mat-dialog-close] [disabled]="form.pristine || form.invalid"
-      mat-raised-button color="primary">Save</button>
-  </div>
+    <!-- <div mat-dialog-content>
+        <mat-form-field>
+            <input matInput placeholder="Name" formControlName="name" #name>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <input matInput placeholder="Email" formControlName="email" #email>
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-raised-button color="accent" [mat-dialog-close]>Back</button>
+        <button type="submit" (click)="addUser(name.value, email.value)" [mat-dialog-close] [disabled]="form.pristine || form.invalid" mat-raised-button color="primary">Save</button>
+    </div> -->
+
+    <h1 mat-dialog-title>Create a User</h1>
+    <div mat-dialog-content>
+        <mat-form-field class="field-full-width">
+            <input placeholder="Nombres" matInput formControlName="nombre_usuario" #nombre>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="field-full-width">
+            <input placeholder="Usuario" matInput formControlName="usuario_usuario" #usuario>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="field-full-width">
+            <input placeholder="Password" matInput formControlName="clave_usuario" #clave>
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-raised-button color="accent" [mat-dialog-close]>Back</button>
+        <!-- <button type="button" (click)="console.log(nombre_usuario.value, usuario_usuario.value,clave_usuario.value)" [mat-dialog-close] mat-raised-button color="secondary">click</button> -->
+        <button type="submit" (click)="addUser(nombre.value, usuario.value,clave.value)" [mat-dialog-close] [disabled]="form.pristine || form.invalid" mat-raised-button color="primary">Save</button>
+    </div>
+    <hr> {{nombre.value}}
+    <hr> {{usuario.value}}
+    <hr> {{clave.value}}
+
 </form>
